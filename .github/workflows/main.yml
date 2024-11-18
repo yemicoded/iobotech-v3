@@ -35,5 +35,5 @@ jobs:
         sudo apt-get install lftp
         # Upload the exported static files to cPanel public_html directory
         lftp -u "$CPANEL_USERNAME,$CPANEL_PASSWORD" "$CPANEL_SERVER" -e "
-        mirror -R ./out /public_html;
+        mirror -R ./out /admin.iobotech.com/public_html;
         bye"
