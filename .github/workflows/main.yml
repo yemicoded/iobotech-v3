@@ -1,44 +1,39 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: Deploy Next.js to cPanel
 
 on:
   push:
-    branches: 
-      - main
+    branches:
+      - main # Adjust to your default branch
 
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
+    name: Deploy to cPanel
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
-    - name: 🚚 Get latest code
+    - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-      
-    - name: 🔨 Build Project
+        node-version: 18 # Use your project's Node.js version
+
+    - name: Install Dependencies
+      run: npm install --legacy-peer-deps # Use 'npm install' if you're not using Yarn
+
+    - name: Build and Export Static Files
+      run: npm run build # Ensure this runs `next build` and `next export`
+
+    - name: Deploy to cPanel
       env:
-         CI: false
+        CPANEL_USERNAME: ${{ secrets.FTP_USER }}
+        CPANEL_PASSWORD: ${{ secrets.FTP_PASS }}
+        CPANEL_SERVER: ${{ secrets.FTP_SERVER }}
       run: |
-        npm install --legacy-peer-deps
-        npm run build
-        # npm run test
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASS }}
-        dangerous-clean-slate: true
-        local-dir: ./.next
+        # Install lftp for file transfer
+        sudo apt-get install lftp
+        # Upload the exported static files to cPanel public_html directory
+        lftp -u "$CPANEL_USERNAME,$CPANEL_PASSWORD" "$CPANEL_SERVER" -e "
+        mirror -R ./out /public_html;
+        bye"
