@@ -1,6 +1,6 @@
-export const convertAmount = (value: number | undefined) => {
+export const convertAmount = (value: string | number | undefined) => {
   return Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
-  }).format(value ?? 0);
+  }).format(Number(value ?? 0));
 };

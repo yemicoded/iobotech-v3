@@ -5,9 +5,9 @@ import { View } from "@/components/shared/view";
 import { DashboardSinglePayoutView } from "@/views/dashboard/finance/payout/single-payout";
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
   searchParams: Promise<{
     page: string;
     limit: string;
@@ -19,8 +19,11 @@ export default async function SinglePayoutPage({
   searchParams,
 }: Props) {
   const [payouts, payoutTransactions] = await Promise.all([
-    GetSinglePayout(params.id),
-    GetTransactions({ payoutId: params.id, queryParams: await searchParams }),
+    GetSinglePayout((await params).id),
+    GetTransactions({
+      payoutId: (await params).id,
+      queryParams: await searchParams,
+    }),
   ]);
   if (payouts.error) {
     return "An error occured";

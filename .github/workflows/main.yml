@@ -41,3 +41,4 @@ jobs:
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASS }}
         dangerous-clean-slate: true
+        local-dir: ./.next
