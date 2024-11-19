@@ -1,39 +1,36 @@
-name: Deploy Next.js to cPanel
+name: Deploy to FTP
 
 on:
   push:
     branches:
-      - main # Adjust to your default branch
+      - master  # Adjust the branch name if needed
 
 jobs:
   deploy:
-    name: Deploy to cPanel
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18 # Use your project's Node.js version
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.21.2  # Use the desired Node.js version
 
-    - name: Install Dependencies
-      run: npm install --legacy-peer-deps # Use 'npm install' if you're not using Yarn
+      - name: Install dependencies and build Next.js app
+        run: |
+          yarn install  # Install project dependencies
+          touch .env.local
+          yarn build  # Build Next.js app
 
-    - name: Build and Export Static Files
-      run: npm run build # Ensure this runs `next build` and `next export`
-
-    - name: Deploy to cPanel
-      env:
-        CPANEL_USERNAME: ${{ secrets.FTP_USER }}
-        CPANEL_PASSWORD: ${{ secrets.FTP_PASS }}
-        CPANEL_SERVER: ${{ secrets.FTP_SERVER }}
-      run: |
-        # Install lftp for file transfer
-        sudo apt-get install lftp
-        # Upload the exported static files to cPanel public_html directory
-        lftp -u "$CPANEL_USERNAME,$CPANEL_PASSWORD" "$CPANEL_SERVER" -e "
-        mirror -R ./out /admin.iobotech.com/public_html;
-        bye"
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS}}
+          local-dir: ./  # This points to the build output directory of your Next.js app
+          server-dir: /
+          protocol: ftps
+          timeout: 300000  # Set a longer timeout value in milliseconds (here, 2 minutes)
