@@ -36,7 +36,7 @@
     "src",
     "svg.d.ts",
     "_next/types/**/*.ts"
-  ],
+, "server.js"  ],
   "exclude": [
     "node_modules"
   ]
