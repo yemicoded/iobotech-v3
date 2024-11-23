@@ -30,7 +30,7 @@ const CustomTableHeader = React.forwardRef<
 
   return (
     <div
-      className="flex flex-col 2xl:flex-row 2xl:items-center justify-between gap-2"
+      className="flex flex-col xl:flex-row xl:items-center justify-between gap-2"
     >
       <div className="max-w-[700px]">
         {title && <h1 className="text-[22px] font-bold">{title}</h1>}
