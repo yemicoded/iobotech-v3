@@ -77,7 +77,8 @@ export const DashboardSinglePayoutView: React.FC<Props> = ({
                 Bank Details{" "}
               </Text>
               <Text as="span" className="font-bold">
-                1466441536 - Iobotech Limited (Access Bank)
+                {payout.bank.accountNumber} - {payout.bank.accountNumber} (
+                {payout.bank.bankName})
               </Text>
             </View>
           </View>
