@@ -30,6 +30,7 @@ interface Props {
   };
 }
 
+
 export const DashboardPayoutsView: React.FC<Props> = ({ initialData }) => {
   console.log("Services", initialData.services);
   const tabTriggers = [
