@@ -1,10 +1,9 @@
 import { Text } from "@/components/shared/text";
-import { Button } from "@/components/ui/button";
+import { ViewTransaction } from "@/components/shared/view-transaction";
 import { convertAmount } from "@/lib/util/convert-amount";
 import { TGetTransaction } from "@/types/transactions";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { FileSpreadsheet } from "lucide-react";
 
 export const columns: ColumnDef<TGetTransaction>[] = [
   {
@@ -67,16 +66,8 @@ export const columns: ColumnDef<TGetTransaction>[] = [
   {
     accessorKey: "id",
     header: () => <div className="px-4"></div>,
-    cell: ({}) => {
-      return (
-        <Button
-          variant="link"
-          leftComp={<FileSpreadsheet />}
-          className="text-sm font-semibold text-gray-500"
-        >
-          VIEW
-        </Button>
-      );
+    cell: ({ row }) => {
+      return <ViewTransaction transaction={row.original} />;
     },
   },
 ];

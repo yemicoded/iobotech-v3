@@ -101,8 +101,8 @@ export const Chart: React.FC<Props> = ({ initialData }) => {
           defaultShowTooltip
           className="-ml-10"
         >
-          <Bar dataKey="metering" fill="var(--color-desktop)" radius={4} />
-          <Bar dataKey="billing" fill="var(--color-mobile)" radius={4} />
+          <Bar dataKey="metering" fill="var(--color-desktop)" radius={10} maxBarSize={30} />
+          <Bar dataKey="billing" fill="var(--color-mobile)" radius={10} maxBarSize={30} />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey="label" className="font-bold text-primary" />
           <YAxis className="font-bold text-primary" />
