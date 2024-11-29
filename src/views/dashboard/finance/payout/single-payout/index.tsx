@@ -77,7 +77,7 @@ export const DashboardSinglePayoutView: React.FC<Props> = ({
                 Bank Details{" "}
               </Text>
               <Text as="span" className="font-bold">
-                {payout.bank.accountNumber} - {payout.bank.accountNumber} (
+                {payout.bank.accountNumber} - {payout.bank.accountName} (
                 {payout.bank.bankName})
               </Text>
             </View>

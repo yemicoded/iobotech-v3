@@ -7,6 +7,7 @@ import {
   // CircleHelp,
   History,
   Home,
+  UsersRound,
   // ScrollText,
   // Settings,
   // Users,
@@ -38,78 +39,78 @@ export const SIDEBAR_MENU = [
         url: APP_LINKS.DASHBOARD_PAYOUT,
         icon: CircleArrowOutUpRight,
       },
-      // {
-      //   title: "Expenses",
-      //   url: "#",
-      //   icon: Home,
-      // },
-      // {
-      //   title: "Wallet Transaction",
-      //   url: "#",
-      //   icon: Home,
-      // },
-      // {
-      //   title: "Virtual Accounts",
-      //   url: "#",
-      //   icon: Home,
-      // },
+      {
+        title: "Expenses",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+      {
+        title: "Wallet Transaction",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+      {
+        title: "Virtual Accounts",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
     ],
   },
-  // {
-  //   label: "Management",
-  //   menus: [
-  //     {
-  //       title: "Customers",
-  //       url: APP_LINKS.DASHBOARD_CUSTOMERS,
-  //       icon: UsersRound,
-  //     },
-  //     {
-  //       title: "Community Management",
-  //       url: "#",
-  //       icon: Home,
-  //     },
-  //     {
-  //       title: "Meter Management",
-  //       url: "#",
-  //       icon: Home,
-  //     },
-  //     {
-  //       title: "Staff",
-  //       url: "#",
-  //       icon: Home,
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: "Security",
-  //   menus: [
-  //     {
-  //       title: "Gatepass",
-  //       url: "#",
-  //       icon: Home,
-  //     },
-  //     {
-  //       title: "Emergency Alerts",
-  //       url: "#",
-  //       icon: Home,
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: "Activities",
-  //   menus: [
-  //     {
-  //       title: "Forum",
-  //       url: "",
-  //       icon: Home,
-  //     },
-  //     {
-  //       title: "Public Facilities",
-  //       url: "",
-  //       icon: Home,
-  //     },
-  //   ],
-  // },
+  {
+    label: "Management",
+    menus: [
+      {
+        title: "Customers",
+        url: APP_LINKS.COMING_SOON,
+        icon: UsersRound,
+      },
+      {
+        title: "Community Management",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+      {
+        title: "Meter Management",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+      {
+        title: "Staff",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+    ],
+  },
+  {
+    label: "Security",
+    menus: [
+      {
+        title: "Gatepass",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+      {
+        title: "Emergency Alerts",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+    ],
+  },
+  {
+    label: "Activities",
+    menus: [
+      {
+        title: "Forum",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+      {
+        title: "Public Facilities",
+        url: APP_LINKS.COMING_SOON,
+        icon: Home,
+      },
+    ],
+  },
 ];
 
 export const FOOTER_MENU = [

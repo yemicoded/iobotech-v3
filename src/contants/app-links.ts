@@ -14,6 +14,7 @@ export enum APP_LINKS {
   CREATE_COMMUNITY = "/communities/create",
   COMMUNITY_NOT_FOUND = "/communities/not-found",
   // Dashboard
+  COMING_SOON = "/dashboard/coming-soon",
   DASHBOARD_OVERVIEW = "/dashboard",
   DASHBOARD_TRANSACTIONS = "/dashboard/finance/transactions",
   DASHBOARD_PAYOUT = "/dashboard/finance/payout",

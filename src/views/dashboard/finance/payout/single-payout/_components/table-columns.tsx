@@ -1,18 +1,9 @@
 import { Text } from "@/components/shared/text";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { ViewTransaction } from "@/components/shared/view-transaction";
 import { convertAmount } from "@/lib/util/convert-amount";
 import { TGetTransaction } from "@/types/transactions";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { FileSpreadsheet } from "lucide-react";
 
 export const columns: ColumnDef<TGetTransaction>[] = [
   {
@@ -75,33 +66,8 @@ export const columns: ColumnDef<TGetTransaction>[] = [
   {
     accessorKey: "id",
     header: () => <div className="px-4"></div>,
-    cell: ({}) => {
-      return <ViewTransactions />;
+    cell: ({ row }) => {
+      return <ViewTransaction transaction={row.original} />;
     },
   },
 ];
-
-const ViewTransactions: React.FC = () => {
-  // const lineItems = [{
-  //   label:
-  // }]
-  return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          variant="link"
-          leftComp={<FileSpreadsheet />}
-          className="text-sm font-semibold text-gray-500"
-        >
-          VIEW
-        </Button>
-      </SheetTrigger>
-      <SheetContent className="min-w-[600px]">
-        <SheetHeader>
-          <SheetTitle>Transaction Details</SheetTitle>
-        </SheetHeader>
-      </SheetContent>
-      <SheetFooter></SheetFooter>
-    </Sheet>
-  );
-};
