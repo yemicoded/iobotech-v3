@@ -22,7 +22,7 @@ export const PayoutsTable: React.FC<Props> = ({
       columns={columns}
       data={data?.data || []}
       header={{
-        title: "Transactions",
+        title: "Payouts",
         searchable: true,
         rightComp,
       }}

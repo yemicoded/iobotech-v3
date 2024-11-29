@@ -44,16 +44,16 @@ export const SIDEBAR_MENU = [
         url: APP_LINKS.COMING_SOON,
         icon: Home,
       },
-      {
-        title: "Wallet Transaction",
-        url: APP_LINKS.COMING_SOON,
-        icon: Home,
-      },
-      {
-        title: "Virtual Accounts",
-        url: APP_LINKS.COMING_SOON,
-        icon: Home,
-      },
+      // {
+      //   title: "Wallet Transaction",
+      //   url: APP_LINKS.COMING_SOON,
+      //   icon: Home,
+      // },
+      // {
+      //   title: "Virtual Accounts",
+      //   url: APP_LINKS.COMING_SOON,
+      //   icon: Home,
+      // },
     ],
   },
   {
@@ -114,19 +114,19 @@ export const SIDEBAR_MENU = [
 ];
 
 export const FOOTER_MENU = [
-  // {
-  //   title: "Reports",
-  //   url: "",
-  //   icon: Home,
-  // },
-  // {
-  //   title: "Settings",
-  //   url: "",
-  //   icon: Home,
-  // },
-  // {
-  //   title: "Developer",
-  //   url: "",
-  //   icon: Home,
-  // },
+  {
+    title: "Reports",
+    url: APP_LINKS.COMING_SOON,
+    icon: Home,
+  },
+  {
+    title: "Settings",
+    url: APP_LINKS.COMING_SOON,
+    icon: Home,
+  },
+  {
+    title: "Developer",
+    url: APP_LINKS.COMING_SOON,
+    icon: Home,
+  },
 ];

@@ -44,7 +44,7 @@ export const DashboardSinglePayoutView: React.FC<Props> = ({
     },
     {
       label: "Disbursement Date",
-      value: format(payout.toBeDisbursedOn, "dd MMM, yyyy p"),
+      value: format(payout.toBeDisbursedOn, "dd MMM, yyyy"),
     },
     {
       label: "Disbursement Amount",

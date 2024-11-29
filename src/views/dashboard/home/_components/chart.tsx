@@ -15,7 +15,7 @@ import { QueryKeys } from "@/contants/query-keys";
 import { useCommunity } from "@/store/use-community";
 import { IGetAPIResponse } from "@/types/api-response.interface";
 import { TGetRevenueChartResponseDTO } from "@/types/revenue";
-import { ChevronDown } from "lucide-react";
+import { ChartNoAxesCombined, ChevronDown, RefreshCw } from "lucide-react";
 import React from "react";
 import { useQuery } from "react-query";
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
@@ -39,7 +39,7 @@ interface Props {
 export const Chart: React.FC<Props> = ({ initialData }) => {
   const { community } = useCommunity();
   console.log("INITIAL", initialData);
-  const { data, isFetching } = useQuery({
+  const { data, isFetching, refetch } = useQuery({
     queryKey: [QueryKeys(community).GET_REVENUE_CHART],
     queryFn: () =>
       GetRevenueChart({
@@ -71,13 +71,18 @@ export const Chart: React.FC<Props> = ({ initialData }) => {
     <View className="flex flex-col gap-6">
       <View className="flex gap-4 justify-between items-center">
         <View className="flex gap-4">
-          <Button leftComp={"IC"} className="" />
+          <Button leftComp={<ChartNoAxesCombined />} className="" />
           <View className="flex flex-col">
             <ChartFilter />
-            <View>
+            <View className="flex items-center gap-2">
               <Text className="text-[22px] font-bold">
                 {isFetching ? "..." : convertAmount(data?.data?.totalRevenue)}
               </Text>
+              <RefreshCw
+                size={18}
+                onClick={() => refetch()}
+                className="cursor-pointer"
+              />
             </View>
           </View>
         </View>
@@ -101,8 +106,18 @@ export const Chart: React.FC<Props> = ({ initialData }) => {
           defaultShowTooltip
           className="-ml-10"
         >
-          <Bar dataKey="metering" fill="var(--color-desktop)" radius={10} maxBarSize={30} />
-          <Bar dataKey="billing" fill="var(--color-mobile)" radius={10} maxBarSize={30} />
+          <Bar
+            dataKey="metering"
+            fill="var(--color-desktop)"
+            radius={0}
+            maxBarSize={30}
+          />
+          <Bar
+            dataKey="billing"
+            fill="var(--color-mobile)"
+            radius={0}
+            maxBarSize={30}
+          />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey="label" className="font-bold text-primary" />
           <YAxis className="font-bold text-primary" />

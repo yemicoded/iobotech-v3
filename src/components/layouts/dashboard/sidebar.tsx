@@ -14,7 +14,7 @@ import {
 import React from "react";
 import { Text } from "@/components/shared/text";
 import Link from "next/link";
-import { SIDEBAR_MENU } from "@/contants/sidebar-menu";
+import { FOOTER_MENU, SIDEBAR_MENU } from "@/contants/sidebar-menu";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -57,7 +57,9 @@ const DashboardSidebar: React.FC = () => {
                       <SidebarMenuButton
                         className={cn(
                           "border-l-4 border-transparent rounded-none px-4 hover:bg-black/20 py-6 active:bg-black/20",
-                          pathname === menu.url && "bg-black/20 border-gray-100"
+                          pathname === menu.url &&
+                            pathname !== APP_LINKS.COMING_SOON &&
+                            "bg-black/20 border-gray-100"
                         )}
                         asChild
                       >
@@ -77,16 +79,18 @@ const DashboardSidebar: React.FC = () => {
         ))}
       </SidebarContent>
       <SidebarFooter className="p-0 bg-primary pb-3 border-t-2">
-        {/* <SidebarGroup className="p-0">
+        <SidebarGroup className="p-0">
           <SidebarGroupContent>
-            <SidebarMenu className="flex flex-col">
+            <SidebarMenu className="flex flex-col gap-0">
               {FOOTER_MENU.map((menu, _i) => (
                 <View key={_i}>
                   <SidebarMenuItem key={menu.title}>
                     <SidebarMenuButton
                       className={cn(
                         "border-l-4 border-transparent rounded-none px-4 hover:bg-black/20 py-6 active:bg-black/20",
-                        pathname === menu.url && "bg-black/20 border-gray-100"
+                        pathname === menu.url &&
+                          pathname !== APP_LINKS.COMING_SOON &&
+                          "bg-black/20 border-gray-100"
                       )}
                       asChild
                     >
@@ -102,7 +106,7 @@ const DashboardSidebar: React.FC = () => {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup> */}
+        </SidebarGroup>
         <View className="flex items-center justify-between px-4">
           <View
             className="cursor-pointer"

@@ -52,7 +52,7 @@ export const columns: ColumnDef<TGetPayout>[] = [
 
       return (
         <Text className="font-medium text-[14px] p-4">
-          {format(createdAt, "dd MMM, yyyy p")}
+          {format(createdAt, "dd MMM, yyyy")}
         </Text>
       );
     },
