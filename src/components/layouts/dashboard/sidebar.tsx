@@ -21,6 +21,12 @@ import { cn } from "@/lib/utils";
 import { CommunitySwitch } from "./community-switch";
 import { signOut } from "next-auth/react";
 import { APP_LINKS } from "@/contants/app-links";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const DashboardSidebar: React.FC = () => {
   const pathname = usePathname();
@@ -53,24 +59,78 @@ const DashboardSidebar: React.FC = () => {
               <SidebarMenu className="flex flex-col">
                 {item.menus.map((menu, _i) => (
                   <View key={_i}>
-                    <SidebarMenuItem key={menu.title}>
-                      <SidebarMenuButton
-                        className={cn(
-                          "border-l-4 border-transparent rounded-none px-4 hover:bg-black/20 py-6 active:bg-black/20",
-                          pathname === menu.url &&
-                            pathname !== APP_LINKS.COMING_SOON &&
-                            "bg-black/20 border-gray-100"
+                    <Accordion type="single" collapsible>
+                      <SidebarMenuItem key={menu.title}>
+                        {menu.menus?.length ? (
+                          <AccordionItem
+                            key={_i}
+                            value={menu.title}
+                            className="border-none"
+                          >
+                            <AccordionTrigger
+                              className={cn(
+                                "border-l-4 border-transparent rounded-none px-4 hover:bg-black/20 h-11 active:bg-black/20 flex items-center hover:no-underline",
+                                pathname === menu.url &&
+                                  pathname !== APP_LINKS.COMING_SOON &&
+                                  "bg-black/20 border-gray-100"
+                              )}
+                            >
+                              <View className="flex items-center gap-2 text-sm">
+                                <menu.icon
+                                  className="text-secondary text-sm"
+                                  size={16}
+                                />
+                                <span className="font-medium text-gray-300">
+                                  {menu.title}
+                                </span>
+                              </View>
+                            </AccordionTrigger>
+                            <AccordionContent className="pb-0 pl-6">
+                              {menu.menus.map((sub_menu, _i) => (
+                                <SidebarMenuButton
+                                  key={_i}
+                                  className={cn(
+                                    "rounded-none px-5 h-11 active:underline active:bg-transparent hover:bg-transparent hover:underline",
+                                    pathname === menu.url &&
+                                      pathname !== APP_LINKS.COMING_SOON &&
+                                      ""
+                                  )}
+                                  asChild
+                                >
+                                  <Link
+                                    href={`${menu.url}`}
+                                    className="hover:underline"
+                                    prefetch
+                                  >
+                                    <menu.icon className="text-secondary" />
+                                    <span className="font-medium text-gray-300">
+                                      {sub_menu.title}
+                                    </span>
+                                  </Link>
+                                </SidebarMenuButton>
+                              ))}
+                            </AccordionContent>
+                          </AccordionItem>
+                        ) : (
+                          <SidebarMenuButton
+                            className={cn(
+                              "border-l-4 border-transparent rounded-none px-4 hover:bg-black/20 h-11 active:bg-black/20",
+                              pathname === menu.url &&
+                                pathname !== APP_LINKS.COMING_SOON &&
+                                "bg-black/20 border-gray-100"
+                            )}
+                            asChild
+                          >
+                            <Link href={`${menu.url}`} prefetch>
+                              <menu.icon className="text-secondary" />
+                              <span className="font-medium text-gray-300">
+                                {menu.title}
+                              </span>
+                            </Link>
+                          </SidebarMenuButton>
                         )}
-                        asChild
-                      >
-                        <Link href={`${menu.url}`} prefetch>
-                          <menu.icon className="text-secondary" />
-                          <span className="font-medium text-gray-300">
-                            {menu.title}
-                          </span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
+                      </SidebarMenuItem>
+                    </Accordion>
                   </View>
                 ))}
               </SidebarMenu>

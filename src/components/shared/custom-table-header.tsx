@@ -14,7 +14,7 @@ interface Props {
 const CustomTableHeader = React.forwardRef<
   React.Component<HTMLDivElement>,
   Props
->(({ title, searchable, rightComp, onSearch }) => {
+>(({ title, searchable, rightComp, onSearch }, ref) => {
   const [search, setSearch] = React.useState<string>("");
   const [value] = useDebounce(search, 50);
 

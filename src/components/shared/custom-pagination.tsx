@@ -14,7 +14,7 @@ import { TPagination } from "@/types/api-response.interface";
 const CustomPagination = React.forwardRef<
   React.Component<HTMLDivElement>,
   TPagination
->(({ totalPages }) => {
+>(({ totalPages }, ref) => {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const router = useRouter();
