@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Text } from "@/components/shared/text";
 import { Button } from "@/components/ui/button";
 import { TGetTransaction } from "@/types/transactions";
