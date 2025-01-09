@@ -19,4 +19,5 @@ export enum APP_LINKS {
   DASHBOARD_TRANSACTIONS = "/dashboard/finance/transactions",
   DASHBOARD_PAYOUT = "/dashboard/finance/payout",
   DASHBOARD_CUSTOMERS = "/dashboard/management/customers",
+  DASHBOARD_STAFFS = "/dashboard/management/staffs",
 }

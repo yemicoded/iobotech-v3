@@ -47,7 +47,7 @@ const DashboardSidebar: React.FC = () => {
         // initialData={{ communities: initialData.communities }}
         />
       </View>
-      <SidebarContent className="scrollbar scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-primary bg-primary gap-0">
+      <SidebarContent className="scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-primary bg-primary gap-0">
         {SIDEBAR_MENU.slice(0, 6).map((item, _i) => (
           <SidebarGroup key={_i} className="px-0 flex flex-col gap-1 pb-3">
             {item.label ? (

@@ -61,7 +61,7 @@ export const SIDEBAR_MENU = [
     menus: [
       {
         title: "Customers",
-        url: APP_LINKS.COMING_SOON,
+        url: APP_LINKS.DASHBOARD_CUSTOMERS,
         icon: UsersRound,
       },
       {
@@ -155,7 +155,7 @@ export const SIDEBAR_MENU = [
       },
       {
         title: "Staff",
-        url: APP_LINKS.COMING_SOON,
+        url: APP_LINKS.DASHBOARD_STAFFS,
         icon: Home,
       },
     ],

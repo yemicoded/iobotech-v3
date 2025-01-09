@@ -1,8 +1,9 @@
+import DashboardLayoutWrapper from "@/components/layouts/dashboard";
+import { RolesAndPermission } from "@/views/dashboard/management/staffs/roles-permission";
+import React from "react";
 import { GetCommunityServices } from "@/app/services/misc";
 import { GetTransactions } from "@/app/services/transaction";
-import DashboardLayoutWrapper from "@/components/layouts/dashboard";
 import { TGetCommunityService } from "@/types/misc";
-import { DashboardCustomersView } from "@/views/dashboard/management/customers";
 
 interface Props {
   searchParams: Promise<{
@@ -11,7 +12,7 @@ interface Props {
     search: string;
   }>;
 }
-export default async function DashboardCustomersPage({ searchParams }: Props) {
+export default async function DashboardRolesPage({ searchParams }: Props) {
   const { data: services, error } = await GetCommunityServices();
 
   if (error) {
@@ -24,7 +25,7 @@ export default async function DashboardCustomersPage({ searchParams }: Props) {
   );
 
   console.log("SEARCH PARAMS", searchParams);
-  const [allTransactions, meteringTransactions, billingTransactions] =
+  const [allTransactions] =
     await Promise.all([
       GetTransactions({ queryParams: await searchParams }),
       GetTransactions({
@@ -36,14 +37,13 @@ export default async function DashboardCustomersPage({ searchParams }: Props) {
         queryParams: await searchParams,
       }),
     ]);
+
   return (
-    <DashboardLayoutWrapper pageTitle="Customers">
-      <DashboardCustomersView
+    <DashboardLayoutWrapper pageTitle="Roles and Permission">
+      <RolesAndPermission
         initialData={{
           services: services as TGetCommunityService[],
           allTransactions,
-          meteringTransactions,
-          billingTransactions,
         }}
       />
     </DashboardLayoutWrapper>

@@ -2,7 +2,7 @@ import { GetCommunityServices } from "@/app/services/misc";
 import { GetTransactions } from "@/app/services/transaction";
 import DashboardLayoutWrapper from "@/components/layouts/dashboard";
 import { TGetCommunityService } from "@/types/misc";
-import { DashboardCustomersView } from "@/views/dashboard/management/customers";
+import { DashboardStaffsView } from "@/views/dashboard/management/staffs";
 
 interface Props {
   searchParams: Promise<{
@@ -11,7 +11,7 @@ interface Props {
     search: string;
   }>;
 }
-export default async function DashboardCustomersPage({ searchParams }: Props) {
+export default async function DashboardStaffsPage({ searchParams }: Props) {
   const { data: services, error } = await GetCommunityServices();
 
   if (error) {
@@ -37,8 +37,8 @@ export default async function DashboardCustomersPage({ searchParams }: Props) {
       }),
     ]);
   return (
-    <DashboardLayoutWrapper pageTitle="Customers">
-      <DashboardCustomersView
+    <DashboardLayoutWrapper pageTitle="Team Member">
+      <DashboardStaffsView
         initialData={{
           services: services as TGetCommunityService[],
           allTransactions,
